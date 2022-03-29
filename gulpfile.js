@@ -51,7 +51,7 @@ gulp.task("copy-styles", () => {
         require("@tailwindcss/typography"),
       ])
     )
-    .pipe(gulp.dest("dist/assets/css"));
+    .pipe(gulp.dest("dist/css"));
 });
 
 /**
@@ -59,7 +59,7 @@ gulp.task("copy-styles", () => {
  * desc: copies JS into dist/
  */
 gulp.task("copy-js", () => {
-  return gulp.src("src/assets/js/**/*.js").pipe(gulp.dest("dist/assets/js"));
+  return gulp.src("src/assets/js/**/*.js").pipe(gulp.dest("dist/js"));
 });
 
 /**
@@ -67,7 +67,7 @@ gulp.task("copy-js", () => {
  * desc: copies img folder into dist/
  */
 gulp.task("copy-img", () => {
-  return gulp.src("src/assets/img/**/*").pipe(gulp.dest("dist/assets/img"));
+  return gulp.src("src/assets/img/**/*").pipe(gulp.dest("dist/img"));
 });
 
 /**
@@ -75,7 +75,7 @@ gulp.task("copy-img", () => {
  * desc: copies img folder into dist/
  */
 gulp.task("copy-fonts", () => {
-  return gulp.src("src/assets/fonts/**/*").pipe(gulp.dest("dist/assets/fonts"));
+  return gulp.src("src/assets/fonts/**/*").pipe(gulp.dest("dist/fonts"));
 });
 
 /**

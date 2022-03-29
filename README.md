@@ -1,6 +1,13 @@
 # Nunjucks-Gulp-Tailwind-Alpine starter
 
-A bare bones project template that helps you build static sites :rocket: **fast** :rocket:
+A bare bones project template that helps you build static sites **fast**  :rocket:
+
+This project uses:
+
+- [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
+- [Gulp](https://gulpjs.com/) for some simple automation
+- [Tailwind CSS](https://tailwindcss.com/) just for better CSS
+- [Alpine JS](https://alpinejs.dev/) to make JS stuff easier
 
 ## Get started
 
