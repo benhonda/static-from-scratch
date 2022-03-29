@@ -5,6 +5,7 @@
 {% block content %}
 <main>
   <h1 class="text-2xl font-medium underline text-center pt-12 text-blue-600">{{ hello_world }}</h1>
+  <p class="text-md italic text-center pt-4">{{ nested1.nested2 }}</p>
 
   <div class="mt-12 flex items-center flex-col" @click.away="open = false" x-data="{ open: false }">
     <div>
