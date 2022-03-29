@@ -1,14 +1,6 @@
 # Nunjucks-Gulp-Tailwind-Alpine starter
 
-A bare bones project ready for you to take over.
-
-Includes:
-
-- Nunjucks 
-- TailwindCSS
-- Gulp
-- AlpineJS
-- i18n
+A bare bones project template that helps you build static sites **fast**.
 
 ## Get started
 
@@ -29,7 +21,7 @@ Includes:
 
 ## The deets
 
-1. English content goes into [locales/en.json](locales/en.json). French content goes into [locales/fr.json](locales/en.json). You use the same variable nam (json key) in both of these files. See [src/pages/index.njk](src/pages/index.njk)
+1. English content goes into [locales/en.json](src/locales/en.json). French content goes into [locales/fr.json](src/locales/en.json). You use the same variable nam (json key) in both of these files. See [pages/index.njk](src/pages/index.njk)
 
 
 
