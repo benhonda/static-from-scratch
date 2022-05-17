@@ -1,4 +1,0 @@
-
-hello_world: "Bonjour from YAML"
-nested1:
-  nested2: "Salut!"

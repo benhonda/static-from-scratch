@@ -1,0 +1,13 @@
+
+##########################################################
+# Generic site configuration
+##########################################################
+
+metadata:
+  title: "Welcome!"
+  desc: "This is a website."
+  site_author: ""
+  site_url:
+    local: "http://localhost:3001"
+    staging: ""
+    prod: ""

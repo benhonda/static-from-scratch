@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ pages[page_key]._title or metadata.title }}</title>
+    <meta name="description" content="{{ pages[page_key]._desc or metadata.desc }}" />
+    <meta name="author" content="{{ metadata.site_author }}" />
+
+    <meta property="og:title" content="{{ pages[page_key]._title or metadata.title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ metadata.site_url }}" />
+    <meta property="og:description" content="{{ pages[page_key]._desc or metadata.desc }}" />
+    <!-- <meta property="og:image" content="image.png" /> -->
+
+    <!-- <link rel="icon" href="/favicon.ico" /> -->
+    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
+    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+
+    <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+  </head>
+  <body>
+    <!-- Main content -->
+    {% block base %} {% endblock %}
+
+    <!-- AlpineJS -->
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+    <!-- Custom JS -->
+    <script src="/js/scripts.js" type="text/javascript"></script>
+  </body>
+</html>

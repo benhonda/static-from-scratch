@@ -1,0 +1,2 @@
+# to make git happy :)
+# any JS files in js/ will be compiled into a single scripts.js in dist/  

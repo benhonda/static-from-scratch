@@ -1,0 +1,25 @@
+##########################################################
+# This values here will overwrite the overlapping
+# contents in config.yaml. Do with it what you want.
+
+# You can also reference other yaml keys by absolute paths.
+##########################################################
+
+pages:
+  sadf: "sdfa"
+  index:
+    _path: "/"
+    _title:
+      en: "asdf"
+      fr: ""
+    _desc: ""
+    example_content_key:
+      en: "English version {{ pages.index._title }}"
+      fr: "French version"
+
+img:
+  _path: "../img"
+  example_image_key: "{{ img._path }}/image.webp"
+  example_image_key_alt:
+    en: "EN alt text"
+    fr: "FR alt text"

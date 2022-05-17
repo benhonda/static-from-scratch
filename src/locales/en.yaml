@@ -1,4 +1,0 @@
-
-hello_world: "Hi from YAML."
-nested1:
-  nested2: "Hi, I'm nested"
