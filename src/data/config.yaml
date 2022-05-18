@@ -1,13 +1,15 @@
-
 ##########################################################
 # Generic site configuration
 ##########################################################
 
 metadata:
-  title: "Welcome!"
+  title: "Hello, World"
+  title_suffix: " | My Website" # this is here to separate it in og:title
   desc: "This is a website."
-  site_author: ""
+  site_author: "John Appleseed"
+  type: "website"
+  theme_color: "#ffffff"
   site_url:
-    local: "http://localhost:3001"
-    staging: ""
-    prod: ""
+    local: "http://localhost:3001/"
+    staging: "{{ metadata.site_url.local }}"
+    prod: "{{ metadata.site_url.local }}"

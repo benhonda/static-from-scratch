@@ -1,42 +1,39 @@
-# Nunjucks-Gulp-Tailwind-Alpine starter
+# Build static websites _fast_ with Static-from-scratch :rocket:
 
-A bare bones project template that helps you build static sites **fast**  :rocket:
+Static-from-scratch is a repo that you can use as a starting point for your next static website. It's like starting from scratch without having to totally start from scratch.
 
-This project uses:
+- Gives your project a tried-and-true structure that you can build off of
+- Generates production code that is:
+  - Clean & concise
+  - Lightweight
+  - SEO conscious
+  - Ready to deploy
+- Extracts hard-coded data (like copy) into yaml files to make content changes and localization easy to manage and maintain
+- Works with templating languages ([Nunjucks](https://mozilla.github.io/nunjucks/) by default)
+- Includes [Tailwind CSS](https://tailwindcss.com/) and [Alpine JS](https://alpinejs.dev/) out-of-the-box for easy styling and interactivity
+- Stays out of your way as you build your website
 
-- [Nunjucks](https://mozilla.github.io/nunjucks/) for templating
-- [Gulp](https://gulpjs.com/) for some simple automation
-- [Tailwind CSS](https://tailwindcss.com/) just for better CSS
-- [Alpine JS](https://alpinejs.dev/) to make JS stuff easier
+## Roadmap
+
+- Add config to ship on AWS (along with helpers for assets like images)
+- Add documentation
+- Create a better way to start with a **clean** project (maybe CLI one day?)
+- More gulp automation:
+  - resizing images
 
 ## Get started
 
-1. Clone or download the repo
-1. Install dependencies
+Getting started is as easy as:
 
-   ```bash
-   npm install
-   ```
+### 1. Fork
 
-1. Spin up a server and run all Gulp tasks
+### 2. Run
 
-   ```bash
-   gulp watch
-   ```
+One line and you're ready to go.
 
-1. A browser window will open to `https://localhost:3000/en`. Navigate to `https://localhost:3000/fr` for the French version.
+```bash
+# from your root directory
+npm install && npm start
+```
 
-## Details
-
-### Content
-
-1. English content goes into [locales/en.yaml](src/locales/en.yaml). French content goes into [locales/fr.json](src/locales/en.yaml). You need to use the same variable name (the key in the key-value) in both of these files. See [pages/index.njk](src/pages/index.njk) for implementation.
-
-    If you prefer to use JSON, you can do so by changing the appropriate tasks in [the gulpfile](gulpfile.js) (code for it is there, just need to uncomment and remove the YAML implementation).
-
-### Other Gulp tasks
-
-There are other Gulp tasks you can (and should) run that aren't automatically run with the `gulp` command. These include:
-
-- `a11y`: Uses the `gulp-accessibility` plugin to check for accessibility problems in your HTML.
-- `validate`: Uses the `gulp-html` plugin to validate your HTML.
+Your browser should open a localhost window automatically.

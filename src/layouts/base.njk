@@ -4,21 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{{ pages[page_key]._title or metadata.title }}</title>
+    <title>{{ pages[page_key]._title or metadata.title }}{{ metadata.title_suffix }}</title>
+
     <meta name="description" content="{{ pages[page_key]._desc or metadata.desc }}" />
     <meta name="author" content="{{ metadata.site_author }}" />
+    <meta name="theme-color" content="{{ metadata.theme_color }}" />
 
+    <!-- For meta OG best practices, go to https://developers.facebook.com/docs/sharing/best-practices -->
     <meta property="og:title" content="{{ pages[page_key]._title or metadata.title }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ metadata.site_url }}" />
     <meta property="og:description" content="{{ pages[page_key]._desc or metadata.desc }}" />
-    <!-- <meta property="og:image" content="image.png" /> -->
+    <meta property="og:type" content="{{ metadata.type }}" />
+    <meta property="og:url" content="{{ metadata.site_url.prod }}{{ locale }}{{ pages[page_key]._path }}" />
+    <meta property="og:image" content="image.png" />
 
-    <!-- <link rel="icon" href="/favicon.ico" /> -->
-    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml" /> -->
-    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png" /> -->
+    <!-- For browsers that don't support .svg favicons (pretty much just Safari right now) -->
+    <!-- favicon.ico 32×32 -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
 
-    <link rel="stylesheet" href="../css/styles.css" type="text/css" />
+    <!-- For browsers that DO support SVG favicons (most of them now): -->
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+
+    <!-- apple-touch-icon 180×180 -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- web manifest -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
   </head>
   <body>
     <!-- Main content -->

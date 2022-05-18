@@ -10,16 +10,18 @@ pages:
   index:
     _path: "/"
     _title:
-      en: "asdf"
-      fr: ""
-    _desc: ""
+      en: "Welcome!"
+      fr: "Bienvenue!"
+    _desc: "This is a website."
     example_content_key:
-      en: "English version {{ pages.index._title }}"
+      en: "English version"
       fr: "French version"
 
 img:
   _path: "../img"
-  example_image_key: "{{ img._path }}/image.webp"
+  example_image_key:
+    en: "{{ img._path }}/image.webp"
+    fr: "{{ img._path }}/image-fr.webp"
   example_image_key_alt:
     en: "EN alt text"
     fr: "FR alt text"

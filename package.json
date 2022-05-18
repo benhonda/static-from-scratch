@@ -1,6 +1,6 @@
 {
-  "name": "my-website",
-  "version": "1.0.0",
+  "name": "static-from-scratch",
+  "version": "0.1.0",
   "description": "",
   "main": "gulpfile.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "prod": "gulp prod"
   },
   "author": "Ben Honda",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "alpinejs": "^3.9.5",
     "browser-sync": "^2.27.9",

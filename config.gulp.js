@@ -13,6 +13,7 @@ module.exports = {
         js: "./src/assets/js",
         img: "./src/assets/img",
         fonts: "./src/assets/fonts",
+        favicon: "./src/assets/favicon",
       },
       data: "./src/data",
       pages: "./src/pages",

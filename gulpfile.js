@@ -6,13 +6,12 @@
 */
 
 const { src, dest, task, watch, series, parallel } = require("gulp");
-const del = require("del"); //For Cleaning build/dist for fresh export
-const options = require("./config.gulp"); //paths and other options from config.js
+const del = require("del"); // For Cleaning build/dist for fresh export
+const options = require("./config.gulp"); // paths and other options from config.js
+const { prepYaml } = require("./gulpfile-helpers"); // helper functions for tasks
 const browserSync = require("browser-sync").create();
 const nunjucksRender = require("gulp-nunjucks-render");
 const data = require("gulp-data");
-var yaml = require("js-yaml");
-var fs = require("graceful-fs");
 const sass = require("gulp-sass")(require("sass"));
 const postcss = require("gulp-postcss"); //For Compiling tailwind utilities with tailwind config
 const concat = require("gulp-concat"); //For Concatinating js,css files
@@ -21,9 +20,6 @@ const imagemin = require("gulp-imagemin"); //To Optimize Images
 const cleanCSS = require("gulp-clean-css"); //To Minify CSS files
 const purgecss = require("gulp-purgecss"); // Remove Unused CSS from Styles
 const rename = require("gulp-rename"); // to rename files/dirs
-const lodash = require("lodash.merge");
-const traverse = require("traverse");
-const resolve = require("object-resolve-path");
 
 //Load Previews on Browser on dev
 function livePreview(done) {
@@ -42,61 +38,6 @@ function previewReload(done) {
   console.log("\n\t Reloading Browser Preview.\n");
   browserSync.reload();
   done();
-}
-
-// merge yaml files
-function mergeYaml(files = [], extra = {}) {
-  var mergedConfig;
-  files.forEach(function (file) {
-    var parsedConfig = yaml.load(fs.readFileSync(file, "utf-8"));
-    if (!mergedConfig) {
-      mergedConfig = parsedConfig;
-    } else {
-      /* The last files will take the highest precedence */
-      lodash(mergedConfig, parsedConfig, extra);
-    }
-  });
-  return mergedConfig;
-}
-
-function prepYaml(locale) {
-  var yml = mergeYaml([`${options.paths.src.data}/config.yaml`, `${options.paths.src.data}/values.yaml`], {
-    locale,
-  });
-
-  // TODO: make this more efficient
-  traverse(yml).forEach(function (_) {
-    // use localization values
-    if (this.node[locale]) {
-      this.update(this.node[locale]);
-    }
-
-    // to allow references in yaml
-    // grab value between {{ }}
-    try {
-      if (typeof this.node === "string" || this.node instanceof String) {
-        var counter = 0;
-        var newNodeStr = this.node;
-
-        while (newNodeStr.includes("{{") && newNodeStr.includes("}}")) {
-          if (counter > 5) break;
-
-          let rawPath = newNodeStr.substring(newNodeStr.indexOf("{{") + 2, newNodeStr.lastIndexOf("}}"));
-          let path = rawPath.trim();
-
-          newNodeStr = newNodeStr.replace(`{{${rawPath}}}`, resolve(yml, path));
-
-          counter += 1;
-        }
-
-        if (counter > 0) this.update(newNodeStr);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  });
-
-  return yml;
 }
 
 //Development Tasks
@@ -121,7 +62,7 @@ function devStyles() {
   const tailwindcss = require("tailwindcss");
   return src(`${options.paths.src.assets.scss}/**/*.scss`)
     .pipe(sass().on("error", sass.logError))
-    .pipe(dest(options.paths.src.assets.scss))
+    .pipe(dest(options.paths.src.assets.scss)) // this is needed for postCSS... feels weird
     .pipe(
       postcss([
         tailwindcss(options.config.tailwindjs),
@@ -146,6 +87,10 @@ function devScripts() {
 
 function devImages() {
   return src(`${options.paths.src.assets.img}/**/*`).pipe(dest(options.paths.dist.img));
+}
+
+function devFavicon() {
+  return src(`${options.paths.src.assets.favicon}/**/*.{png,ico,svg,webmanifest}`).pipe(dest(options.paths.dist.base));
 }
 
 function devFonts() {
@@ -212,6 +157,10 @@ function prodImages() {
     .pipe(dest(options.paths.dist.img));
 }
 
+function prodFavicon() {
+  return devFavicon();
+}
+
 function prodFonts() {
   return src(`${options.paths.src.assets.fonts}/**/*`).pipe(dest(options.paths.dist.fonts));
 }
@@ -231,6 +180,7 @@ exports.default = series(
     devStyles,
     devScripts,
     devImages,
+    devFavicon,
     devFonts,
     () => devHTML("en"),
     () => devHTML("fr")
@@ -246,6 +196,7 @@ exports.test = series(
     devStyles,
     devScripts,
     devImages,
+    devFavicon,
     devFonts,
     () => devHTML("en"),
     () => devHTML("fr")
@@ -254,6 +205,6 @@ exports.test = series(
 
 exports.prod = series(
   prodClean, // Clean Build Folder
-  parallel(prodStyles, prodScripts, prodImages, prodFonts, prodHTML), //Run All tasks in parallel
+  parallel(prodStyles, prodScripts, prodImages, prodFavicon, prodFonts, prodHTML), //Run All tasks in parallel
   buildFinish
 );
